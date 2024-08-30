@@ -11,15 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import zw.co.dreamhub.domain.models.users.User;
-import zw.co.dreamhub.domain.repositories.users.UserRepository;
-import zw.co.dreamhub.security.services.UserDetailsImpl;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.repositories.users.UserRepository;
+import zw.apkmechanik.enrolment.security.services.UserDetailsImpl;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 18/3/2023
- */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {

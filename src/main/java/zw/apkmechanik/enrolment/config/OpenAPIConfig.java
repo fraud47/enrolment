@@ -1,4 +1,4 @@
-package zw.co.dreamhub.config;
+package zw.apkmechanik.enrolment.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import zw.co.dreamhub.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
 
 
 @Configuration

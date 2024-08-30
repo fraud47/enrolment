@@ -1,24 +1,29 @@
 package zw.apkmechanik.enrolment.services.users;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserLoginRequest;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserRequest;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserStatusRequest;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.domain.dto.request.users.*;
 import zw.apkmechanik.enrolment.domain.dto.response.ApiResponse;
+import zw.apkmechanik.enrolment.domain.dto.response.PaginatedResponse;
 import zw.apkmechanik.enrolment.domain.mappers.users.UserMapper;
 import zw.apkmechanik.enrolment.domain.models.enums.UserRole;
 import zw.apkmechanik.enrolment.domain.models.enums.UserStatus;
 import zw.apkmechanik.enrolment.domain.models.users.User;
-import zw.apkmechanik.enrolment.domain.repositories.StudentRepository;
-import zw.apkmechanik.enrolment.domain.repositories.TeacherRepository;
+import zw.apkmechanik.enrolment.domain.models.users.common.Role;
+import zw.apkmechanik.enrolment.domain.models.users.common.TokenRefresh;
+import zw.apkmechanik.enrolment.domain.projections.users.UserInfo;
 import zw.apkmechanik.enrolment.domain.repositories.users.TokenRefreshRepository;
 import zw.apkmechanik.enrolment.domain.repositories.users.UserRepository;
+import zw.apkmechanik.enrolment.exception.AlreadyExistException;
+import zw.apkmechanik.enrolment.exception.AuthException;
+import zw.apkmechanik.enrolment.exception.NotFoundException;
+import zw.apkmechanik.enrolment.security.services.AuthUtils;
 import zw.apkmechanik.enrolment.security.services.PasswordService;
 import zw.apkmechanik.enrolment.utils.RegistrationUtils;
 import zw.apkmechanik.enrolment.utils.ResponseUtils;
@@ -37,15 +42,13 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final TokenRefreshRepository tokenRefreshRepository;
-    private final MessengerService messengerService;
     private final AuthUtils authUtils;
     private final InfoEnv env;
     private final PasswordService passwordService;
-    private final PasswordEncoder encoder;
-    private final TeacherRepository teacherRepository;
-    private final StudentRepository studentRepository;
+
     private final UserMapper userMapper;
     private final RegistrationUtils utils;
+    private final PasswordEncoder encoder;
 
     private static final String NAME = "User";
     private String password = null;
@@ -54,16 +57,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public ApiResponse<String> updateStatus(UserStatusRequest request) {
-        Optional<User> user = userRepository.findByUsername(request.username());
-        return user.map(u -> {
-            u.setStatus(request.status());
-            userRepository.save(u);
-            return ResponseUtils.success(
-                    StringUtils.SUCCESS
-            );
-        }).orElseThrow(() -> new ChangeSetPersister.NotFoundException(StringUtils.notFound(NAME)));
-    }
+
 
     @Transactional
     public ApiResponse<String> register(UserRequest request, UserRole role) {
@@ -75,33 +69,13 @@ public class UserService {
             User regUser = userMapper.toEntity(request);
             regUser.setRoles(Collections.singleton( new Role(role)));
             regUser.setPassword(encoder.encode(password));
+            regUser.setStatus(UserStatus.ACTIVE);
             System.out.println(password);
             userRepository.save(regUser);
-            if (role.equals(UserRole.TEACHER) || role.equals(UserRole.HEADMASTER)){
-                Teacher adminStaff = new Teacher();
-                adminStaff.setUser(regUser);
-                adminStaff.setRegistrationNumber(utils.getRegistrationNumber("H"));
-                //Todo: set registration number
-                teacherRepository.save(adminStaff);
-            }else if (role.equals(UserRole.STUDENT)){
-                Student student = new Student(regUser);
-                student.setRegistrationNumber(utils.getRegistrationNumber("H"));
-                //Todo: set registration number
-                studentRepository.save(student);
-            }
+
 
             String username = request.username();
             String content = String.format(StringUtils.EMAIL_MESSAGE, username, password);
-            messengerService.send(
-                    new MessengerRequest(
-                            MessageType.EMAIL,
-                            username,
-                            content,
-                            StringUtils.EMAIL_SUBJECT,
-                            env.contact().email(),
-                            null
-                    )
-            );
             return ResponseUtils.created(StringUtils.SUCCESS);
         }
     }
@@ -188,13 +162,7 @@ public class UserService {
                     String password = passwordService.randomPassword();
                     u.setPassword(encoder.encode(password));
                     userRepository.save(u);
-                    messengerService.send(new MessengerRequest(
-                            MessageType.EMAIL,
-                            u.getDetail().getEmail(),
-                            StringUtils.passwordMessage(password),
-                            "Password Reset",
-                            env.app().name()
-                    ));
+
                     return ResponseUtils.success(
                             StringUtils.SUCCESS
                     );
@@ -208,13 +176,11 @@ public class UserService {
             int pageCount
     ) {
         Page<UserInfo> data = userRepository.findByRoles_TypeOrderByUsername(role, PageRequest.of(pageNumber, pageCount));
+
         return ResponseUtils.success(
                 ResponseUtils.pageResponse(data, pageNumber)
         );
     }
-
-    // todo : add functionality to add another role to a user
-
 
     public ApiResponse<String> updateUserDetail(String userId, UserRequest request) {
         Optional<User> user = userRepository.findById(userId);
@@ -223,6 +189,16 @@ public class UserService {
             userRepository.save(u);
             return ResponseUtils.success(
                     StringUtils.SUCCESS
+            );
+        }).orElseThrow(() -> new NotFoundException(StringUtils.notFound(NAME)));
+    }
+
+    public ApiResponse<String> deleteUser(String userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.map(u -> {
+            userRepository.delete(u);
+            return ResponseUtils.success(
+                    StringUtils.DELETED
             );
         }).orElseThrow(() -> new NotFoundException(StringUtils.notFound(NAME)));
     }

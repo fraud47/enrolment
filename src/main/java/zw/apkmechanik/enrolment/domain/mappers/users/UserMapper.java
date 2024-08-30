@@ -1,8 +1,9 @@
 package zw.apkmechanik.enrolment.domain.mappers.users;
 
 import org.mapstruct.*;
-import zw.co.dreamhub.domain.dto.request.users.UserRequest;
-import zw.co.dreamhub.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.dto.request.users.UserRequest;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {

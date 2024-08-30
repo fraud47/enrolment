@@ -4,20 +4,17 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import zw.co.dreamhub.domain.models.BaseEntity;
-import zw.co.dreamhub.domain.models.enums.UserStatus;
-import zw.co.dreamhub.domain.models.users.common.Role;
-import zw.co.dreamhub.domain.models.users.common.UserDetail;
+import zw.apkmechanik.enrolment.domain.models.BaseEntity;
+import zw.apkmechanik.enrolment.domain.models.enums.UserStatus;
+import zw.apkmechanik.enrolment.domain.models.users.common.Role;
+import zw.apkmechanik.enrolment.domain.models.users.common.UserDetail;
+
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 13/9/2023
- */
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -33,7 +30,6 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    private String country;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

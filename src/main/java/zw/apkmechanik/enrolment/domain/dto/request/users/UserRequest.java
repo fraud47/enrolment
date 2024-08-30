@@ -6,12 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
-/**
- * DTO for {@link zw.co.dreamhub.domain.models.users.User}
- */
+
 public record UserRequest(
-        @NotNull
-        String country,
         @NotBlank
         @Email
         String username,

@@ -1,4 +1,4 @@
-package zw.co.dreamhub.config;
+package zw.apkmechanik.enrolment.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;

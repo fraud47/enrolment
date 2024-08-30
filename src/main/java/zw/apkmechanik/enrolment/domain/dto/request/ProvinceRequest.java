@@ -1,7 +1,7 @@
-package zw.co.dreamhub.domain.dto.request;
+package zw.apkmechanik.enrolment.domain.dto.request;
 
 import jakarta.validation.constraints.NotNull;
-import zw.co.dreamhub.domain.models.common.Province;
+import zw.apkmechanik.enrolment.domain.models.common.Province;
 
 import java.io.Serializable;
 

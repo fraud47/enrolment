@@ -5,17 +5,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import zw.co.dreamhub.config.env.InfoEnv;
-import zw.co.dreamhub.security.services.UserDetailsImpl;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.security.services.UserDetailsImpl;
+
 
 import java.time.Instant;
 import java.util.Date;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 29/4/2021
- */
+
 
 @Component
 @Slf4j

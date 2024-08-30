@@ -48,5 +48,9 @@ public class ResponseUtils {
                 data.getContent()
         );
     }
-
+    public <T> ApiResponse<T> deleted(T body) {
+        return new ApiResponse<>(
+                true, ResponseCode.SUCCESS, HttpStatus.NO_CONTENT.value(), body
+        );
+    }
 }

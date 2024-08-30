@@ -1,4 +1,4 @@
-package zw.co.dreamhub.exception;
+package zw.apkmechanik.enrolment.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
-import zw.co.dreamhub.domain.dto.response.ApiResponse;
-import zw.co.dreamhub.utils.ResponseUtils;
+import zw.apkmechanik.enrolment.domain.dto.response.ApiResponse;
+import zw.apkmechanik.enrolment.utils.ResponseUtils;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 6/12/2023
- */
 
 @ControllerAdvice
 @RestController
@@ -25,9 +20,7 @@ public class ExceptionHandlerService {
     @ExceptionHandler(BaseException.class)
     public final ResponseEntity<ApiResponse<String>> handleException(BaseException exception, WebRequest request) {
 
-        log.info("Request : ({}) exception : {}",
-                ((ServletWebRequest) request).getRequest().getRequestURI(),
-                exception.getMessage());
+
 
         if (exception instanceof AuthException) {
             return new ResponseEntity<>(

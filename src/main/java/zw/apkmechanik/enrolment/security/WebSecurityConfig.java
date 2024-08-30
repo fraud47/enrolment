@@ -11,16 +11,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import zw.co.dreamhub.config.env.InfoEnv;
-import zw.co.dreamhub.security.jwt.AuthEntryPointJwt;
-import zw.co.dreamhub.security.jwt.AuthTokenFilter;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.security.jwt.AuthEntryPointJwt;
+import zw.apkmechanik.enrolment.security.jwt.AuthTokenFilter;
 
-
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 29/4/2021
- */
 
 @Configuration
 @RequiredArgsConstructor

@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import zw.co.dreamhub.config.env.InfoEnv;
-import zw.co.dreamhub.domain.dto.response.users.AuthResponse;
-import zw.co.dreamhub.domain.models.enums.UserRole;
-import zw.co.dreamhub.domain.models.users.User;
-import zw.co.dreamhub.domain.models.users.common.Role;
-import zw.co.dreamhub.domain.models.users.common.TokenRefresh;
-import zw.co.dreamhub.domain.repositories.users.TokenRefreshRepository;
-import zw.co.dreamhub.domain.repositories.users.UserRepository;
-import zw.co.dreamhub.security.jwt.JwtUtils;
-import zw.co.dreamhub.utils.StringUtils;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.domain.dto.response.users.AuthResponse;
+import zw.apkmechanik.enrolment.domain.models.enums.UserRole;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.models.users.common.TokenRefresh;
+import zw.apkmechanik.enrolment.domain.repositories.users.TokenRefreshRepository;
+import zw.apkmechanik.enrolment.domain.repositories.users.UserRepository;
+import zw.apkmechanik.enrolment.security.jwt.JwtUtils;
+import zw.apkmechanik.enrolment.utils.StringUtils;
+import zw.apkmechanik.enrolment.domain.models.users.common.Role;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -21,11 +21,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 17/3/2023
- */
+
 
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package zw.co.dreamhub.config;
+package zw.apkmechanik.enrolment.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;

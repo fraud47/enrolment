@@ -17,11 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 29/4/2021
- */
 
 @Component
 @RequiredArgsConstructor

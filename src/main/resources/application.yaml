@@ -22,12 +22,15 @@ spring:
   main:
     allow-circular-references: true
   application:
-    name: Student Management Suite API
+    name: enrolment
   liquibase:
     enabled: true
+    clear-checksums: true
+
   jpa:
     properties:
       hibernate:
+        ddl-auto: create-drop
         dialect: org.hibernate.dialect.PostgreSQLDialect
         hbm2ddl:
           auto: none
@@ -40,7 +43,7 @@ spring:
   datasource:
     tomcat:
       test-while-idle: true
-    url: jdbc:postgresql://localhost:5432/student_suite_db
+    url: jdbc:postgresql://localhost:5432/enrolment
     username: postgres
     password: password123
   docker:
@@ -100,17 +103,17 @@ info:
     name: Fazh Backend APIs
     description: Student Management Suite APIs
     version: 1.0
-    basePackage: zw.co.dreamhub
+    basePackage: zw.apkmechanik.enrolment
   contact:
     name: US us
-    url: https://fazhschool.co.zw
+    url: https://enrolment.co.zw
     email: hello@example.co.zw
   url:
     unSecured: /api/v1/public
     secured: /api/v1
   security:
     password:
-      salt: zw.co.dreamhub
+      salt: zw.apkmechanik.enrolment
       saltChars: ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
     jwt:
       # base64 encoded https://www.base64encode.org/
@@ -123,6 +126,6 @@ info:
   # = ADMIN
   # ===============================
 admin-details:
-  username: hello@marlvinzw.me
-  password: marlvin123
+  username: admin
+  password: 1234
   phoneNumber: 263781939619

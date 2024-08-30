@@ -1,15 +1,12 @@
 package zw.apkmechanik.enrolment.domain.dto.response.users;
 
 
-import zw.co.dreamhub.domain.models.enums.UserRole;
+
+import zw.apkmechanik.enrolment.domain.models.enums.UserRole;
 
 import java.util.Set;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 19/9/2023
- */
+
 public record AuthResponse(
         Token token, Set<Role> roles
 ) {

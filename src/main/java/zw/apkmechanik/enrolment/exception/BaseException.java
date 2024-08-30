@@ -1,10 +1,6 @@
-package zw.co.dreamhub.exception;
+package zw.apkmechanik.enrolment.exception;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 6/12/2023
- */
+
 
 public class BaseException extends RuntimeException {
 

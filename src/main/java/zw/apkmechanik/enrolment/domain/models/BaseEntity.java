@@ -10,11 +10,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.ZonedDateTime;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 13/9/2023
- */
 
 @MappedSuperclass
 @Getter

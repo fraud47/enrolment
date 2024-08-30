@@ -3,11 +3,6 @@ package zw.apkmechanik.enrolment.utils;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 15/3/2023
- */
 @UtilityClass
 @Getter
 public class StringUtils {
@@ -23,7 +18,8 @@ public class StringUtils {
     public static final String SAME_PASSWORD = "Old and new passwords are similar";
     public static final String DIFFERENT_PASSWORDS = "Passwords are not matching";
     public  static final String EMAIL_SUBJECT = "Default Credentials";
-   public static String EMAIL_MESSAGE = "Username: %s\nPassword: %s\n\nNB: You are advised to change your default password!";
+    public static final String DELETED = "deleted successfull";
+    public static String EMAIL_MESSAGE = "Username: %s\nPassword: %s\n\nNB: You are advised to change your default password!";
 
 
     public static String alreadyExists(String name) {

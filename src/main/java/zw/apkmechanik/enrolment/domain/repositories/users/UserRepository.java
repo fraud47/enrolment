@@ -3,9 +3,10 @@ package zw.apkmechanik.enrolment.domain.repositories.users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import zw.co.dreamhub.domain.models.enums.UserRole;
-import zw.co.dreamhub.domain.models.users.User;
-import zw.co.dreamhub.domain.projections.users.UserInfo;
+import zw.apkmechanik.enrolment.domain.models.enums.UserRole;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.projections.users.UserInfo;
+
 
 import java.util.Optional;
 

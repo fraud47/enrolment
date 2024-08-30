@@ -5,13 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import zw.co.dreamhub.domain.models.BaseEntity;
+import zw.apkmechanik.enrolment.domain.models.BaseEntity;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 23/3/2024
- */
 
 @Entity
 @Table(name = "address")

@@ -5,16 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import zw.co.dreamhub.domain.models.BaseEntity;
-import zw.co.dreamhub.domain.models.enums.Relationship;
-import zw.co.dreamhub.domain.models.users.User;
-import zw.co.dreamhub.domain.models.users.common.UserDetail;
+import zw.apkmechanik.enrolment.domain.models.BaseEntity;
+import zw.apkmechanik.enrolment.domain.models.enums.Relationship;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.models.users.common.UserDetail;
 
-/**
- * @author sheltons
- * Email sheltshamu@gmail.com
- * Created on 2024/03/08
- */
 
 @Entity
 @Table(name = "emergency_contact")

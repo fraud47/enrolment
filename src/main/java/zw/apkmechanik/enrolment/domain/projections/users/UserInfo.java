@@ -1,13 +1,12 @@
 package zw.apkmechanik.enrolment.domain.projections.users;
 
-import zw.co.dreamhub.domain.models.enums.UserStatus;
+
+import zw.apkmechanik.enrolment.domain.models.enums.UserStatus;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
 
-/**
- * Projection for {@link zw.co.dreamhub.domain.models.users.User}
- */
+
 public interface UserInfo {
     String getId();
 
@@ -17,9 +16,7 @@ public interface UserInfo {
 
     String getUsername();
 
-    String getCountry();
 
-    UserStatus getStatus();
 
     UserDetailInfo getDetail();
 

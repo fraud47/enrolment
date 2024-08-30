@@ -323,11 +323,9 @@ CREATE TABLE user_detail
     date_created  TIMESTAMP WITH TIME ZONE,
     last_updated  TIMESTAMP WITH TIME ZONE,
     first_name    VARCHAR(255),
-    middle_names  TEXT,
     last_name     VARCHAR(255),
     email         VARCHAR(255),
     gender        VARCHAR(255)                NOT NULL,
-    date_of_birth TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     CONSTRAINT pk_user_detail PRIMARY KEY (id)
 );
 
@@ -347,7 +345,6 @@ CREATE TABLE users
     last_updated TIMESTAMP WITH TIME ZONE,
     username     VARCHAR(255),
     password     VARCHAR(255),
-    country      VARCHAR(255),
     status       VARCHAR(255),
     detail_id    VARCHAR(255),
     CONSTRAINT pk_users PRIMARY KEY (id)

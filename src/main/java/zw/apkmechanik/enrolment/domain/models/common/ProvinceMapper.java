@@ -1,7 +1,7 @@
 package zw.apkmechanik.enrolment.domain.models.common;
 
 import org.mapstruct.*;
-import zw.co.dreamhub.domain.dto.request.ProvinceRequest;
+import zw.apkmechanik.enrolment.domain.dto.request.ProvinceRequest;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProvinceMapper {

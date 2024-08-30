@@ -1,4 +1,4 @@
-package zw.co.dreamhub.config.env;
+package zw.apkmechanik.enrolment.config.env;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

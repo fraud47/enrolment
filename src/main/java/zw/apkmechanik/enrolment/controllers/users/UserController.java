@@ -9,11 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserLoginRequest;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserRequest;
-import zw.apkmechanik.enrolment.domain.dto.request.users.UserStatusRequest;
+import zw.apkmechanik.enrolment.domain.dto.request.users.*;
 import zw.apkmechanik.enrolment.domain.dto.response.ApiResponse;
+import zw.apkmechanik.enrolment.domain.dto.response.PaginatedResponse;
 import zw.apkmechanik.enrolment.domain.models.enums.UserRole;
+import zw.apkmechanik.enrolment.domain.projections.users.UserInfo;
 import zw.apkmechanik.enrolment.services.users.UserService;
 import zw.apkmechanik.enrolment.utils.ResponseUtils;
 
@@ -25,22 +25,9 @@ public class UserController {
 
     private final UserService service;
 
-    @PostMapping(value = "${info.url.secured}/users/register/admin", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Register Admin", description = "Registers admin user")
-    public ResponseEntity<ApiResponse<String>> registerAdminUser(@Valid @RequestBody UserRequest request) {
-        var response = service.register(request, UserRole.SUPER_ADMIN);
-        return ResponseUtils.respond(response);
-    }
 
-    @PutMapping(value = "${info.url.secured}/users/update", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    @Operation(summary = "Update User", description = "Update user status")
-    public ResponseEntity<ApiResponse<String>> updateUserStatus(@Valid @RequestBody UserStatusRequest request) {
-        var response = service.updateStatus(request);
-        return ResponseUtils.respond(response);
-    }
+
+
 
     @PostMapping(value = "${info.url.unSecured}/users/register/user", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -115,5 +102,11 @@ public class UserController {
         var response = service.updateUserDetail(id,request);
         return ResponseUtils.respond(response);
     }
-
+    @DeleteMapping(value = "${info.url.secured}/users/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
+    @Operation(summary = "Delete User", description = "Delete a user by ID")
+    public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable String id) {
+        var response = service.deleteUser(id);
+        return ResponseUtils.respond(response);
+    }
 }

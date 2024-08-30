@@ -3,15 +3,10 @@ package zw.apkmechanik.enrolment.security.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import zw.co.dreamhub.config.env.InfoEnv;
+import zw.apkmechanik.enrolment.config.env.InfoEnv;
 
 import java.util.Random;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 14/3/2023
- */
 @Component
 @RequiredArgsConstructor
 public class PasswordService {

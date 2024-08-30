@@ -5,18 +5,14 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import zw.co.dreamhub.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.models.users.User;
 
 import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 29/4/2021
- */
+
 
 @Getter
 public class UserDetailsImpl implements UserDetails {

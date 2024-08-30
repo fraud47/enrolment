@@ -4,17 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import zw.co.dreamhub.domain.models.BaseEntity;
-import zw.co.dreamhub.domain.models.users.User;
+import zw.apkmechanik.enrolment.domain.models.BaseEntity;
+import zw.apkmechanik.enrolment.domain.models.users.User;
+
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-/**
- * @author Marlvin Chihota
- * Email marlvinchihota@gmail.com
- * Created on 19/9/2023
- */
+
 @Entity
 @Table(name = "token_refresh")
 @Getter
